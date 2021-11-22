@@ -11,13 +11,15 @@ public class c_ReadingFileByByte {
     public static void main(String[] args) {
         Path path = Paths.get("./src/session10/giraffe.jpg");
 
+        byte[] array = new byte[10000];
+
         long start = System.currentTimeMillis();
 
         try (InputStream is = Files.newInputStream(path)) {
             int length = 0;
             int b;
-            while ((b = is.read()) != -1) {
-                length++;
+            while ((b = is.read(array)) != -1) {
+                length += b;
             }
             System.out.println("Read " + length + " bytes.");
         } catch (IOException e) {
